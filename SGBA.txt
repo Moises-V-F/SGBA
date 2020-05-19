@@ -1,0 +1,393 @@
+Codigo de pagina de inicio.
+<ion-app>
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Sistema Gestor de Base de Autos
+    </ion-title>
+    <ion-title id="cupo">
+      0/20
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large"></ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <form>
+    <div id="comoda-iz">
+      <ion-item>
+        <ion-label position="floating">Matricula</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Marca</ion-label>
+        <ion-select placeholder="Seleccione">
+          <ion-select-option value="Toyota">Toyota</ion-select-option>
+          <ion-select-option value="Nissan">Nissan</ion-select-option>
+          <ion-select-option value="Chevrolet">Chevrolet</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </div>
+    <div id="comoda-d">
+      <ion-item>
+        <ion-label>Sub-Marca</ion-label>
+        <ion-select placeholder="Seleccione">
+          <ion-select-option value="Yaris">Yaris</ion-select-option>
+          <ion-select-option value="Versa">Versa</ion-select-option>
+          <ion-select-option value="Beat">Beat</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Color</ion-label>
+        <ion-select placeholder="Seleccione">
+          <ion-select-option value="b">Brown</ion-select-option>
+          <ion-select-option value="blonde">Blonde</ion-select-option>
+          <ion-select-option value="black">Black</ion-select-option>
+          <ion-select-option value="red">Red</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </div>
+  </form>
+  <div id="precio">
+        <p>
+          Tarifas
+        </p>
+        <P>00:00 Min a 01:00 Hrs. $  5.00 <br>
+           01:01 Hrs a 02:00 Hrs. $ 10.00 <br>
+           02:01 Hrs a 02:00 Hrs. $ 15.00 <br>
+           03:01 Hrs a 04:00 Hrs. $ 20:00
+        </P>
+    </div>
+  <div id="comoda-bajo">
+    <div> <ion-button position="absolute" type="submit" (click)="handleButtonClick()">Ingresar</ion-button> </div>
+    <div> <ion-button color="danger" routerLink="/salida">Salida</ion-button> </div>
+  </div>
+</ion-content>
+</ion-app>
+//////////////////////////////////////////////////////////////////
+css del programa
+#container {
+  text-align: center;
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#container strong {
+  font-size: 20px;
+  line-height: 26px;
+}
+
+#container p {
+  font-size: 16px;
+  line-height: 22px;
+
+  color: #8c8c8c;
+
+  margin: 0;
+}
+
+#container a {
+  text-decoration: none;
+}
+
+#comoda-iz {
+  text-align: center;
+
+  position: absolute;
+  left: 15%;
+  right: 60%;
+  top: 35%;
+  transform: translateY(-50%);
+}
+
+#comoda-d {
+  text-align: center;
+
+  position: absolute;
+  left: 60%;
+  right: 15%;
+  top: 35%;
+  transform: translateY(-50%);
+}
+
+#comoda-bajo {
+  text-align: center;
+
+  position: absolute;
+  left: 42%;
+  right: 42%;
+  bottom: 25%;
+  transform: translateY(-50%);
+}
+
+#precio {
+  text-align: center;
+  margin: 1px;
+  border: lightgreen 1px solid;
+
+  position: absolute;
+  left: 5%;
+  right: 60%;
+  bottom: 5%;
+  transform: translateY(-50%);
+}
+
+ion-content ion-toolbar {
+  --background: translucent;
+}
+
+#cupo {
+  text-align: center;
+
+  position: absolute;
+  left: 10;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+
+
+ion-content ion-toolbar {
+  --background: translucent;
+}
+/////////////////////////////////////////////////////////////
+Aspectos del proyecto
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { IonicModule } from '@ionic/angular';
+
+import { HomePage } from './home.page';
+
+describe('HomePage', () => {
+  let component: HomePage;
+  let fixture: ComponentFixture<HomePage>;
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ HomePage ],
+      imports: [IonicModule.forRoot()]
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(HomePage);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  }));
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
+/////////////////////////////////////////////////////////////////
+Imports del proyecto home
+import { Component } from '@angular/core';
+import { LoadingController } from '@ionic/angular';
+
+@Component({
+  selector: 'app-home',
+  templateUrl: 'home.page.html',
+  styleUrls: ['home.page.scss'],
+})
+export class HomePage {
+
+
+  constructor(private loadingCtrl: LoadingController) {
+
+  }
+
+  async handleButtonClick() {
+    let loading = await this.loadingCtrl.create({
+      message: 'Please wait...',
+      duration: 3000
+    });
+
+    loading.present();
+  }
+
+}
+//////////////////////////////////////////////////////////////////
+Codigo de pagina de salida
+ion-header>
+  <ion-toolbar>
+    <ion-title>salida</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div id="centro">
+    <ion-item>
+    <ion-label position="floating">Matricula</ion-label>
+    <ion-input></ion-input>
+  </ion-item>
+  <ion-button>Marcar salida</ion-button>
+  </div>
+  <div id="regresar">
+    <ion-button routerLink="/home">Regresar</ion-button>
+  </div>
+</ion-content>
+///////////////////////////////////////////////////////////////
+css salida
+#centro {
+    text-align: center;
+  
+    position: absolute;
+    left: 30%;
+    right: 30%;
+    top: 40%;
+    transform: translateY(-50%);
+  }
+
+#regresar {
+    text-align: center;
+  
+    position: absolute;
+    left: 5%;
+    right: 70%;
+    bottom: 10%;
+    transform: translateY(-50%);
+  }
+///////////////////////////////////////////////////////////
+imports de salida
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { IonicModule } from '@ionic/angular';
+
+import { SalidaPage } from './salida.page';
+
+describe('SalidaPage', () => {
+  let component: SalidaPage;
+  let fixture: ComponentFixture<SalidaPage>;
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ SalidaPage ],
+      imports: [IonicModule.forRoot()]
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(SalidaPage);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  }));
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
+////////////////////////////////////////////////////
+Componentes de la app aspects
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { TestBed, async } from '@angular/core/testing';
+
+import { Platform } from '@ionic/angular';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
+
+import { AppComponent } from './app.component';
+
+describe('AppComponent', () => {
+
+  let statusBarSpy, splashScreenSpy, platformReadySpy, platformSpy;
+
+  beforeEach(async(() => {
+    statusBarSpy = jasmine.createSpyObj('StatusBar', ['styleDefault']);
+    splashScreenSpy = jasmine.createSpyObj('SplashScreen', ['hide']);
+    platformReadySpy = Promise.resolve();
+    platformSpy = jasmine.createSpyObj('Platform', { ready: platformReadySpy });
+
+    TestBed.configureTestingModule({
+      declarations: [AppComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      providers: [
+        { provide: StatusBar, useValue: statusBarSpy },
+        { provide: SplashScreen, useValue: splashScreenSpy },
+        { provide: Platform, useValue: platformSpy },
+      ],
+    }).compileComponents();
+  }));
+
+  it('should create the app', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    expect(app).toBeTruthy();
+  });
+
+  it('should initialize the app', async () => {
+    TestBed.createComponent(AppComponent);
+    expect(platformSpy.ready).toHaveBeenCalled();
+    await platformReadySpy;
+    expect(statusBarSpy.styleDefault).toHaveBeenCalled();
+    expect(splashScreenSpy.hide).toHaveBeenCalled();
+  });
+
+  // TODO: add more tests!
+
+});
+////////////////////////////////////////////////////////////
+componentes de la app
+import { Component } from '@angular/core';
+
+import { Platform } from '@ionic/angular';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: 'app.component.html',
+  styleUrls: ['app.component.scss']
+})
+export class AppComponent {
+  constructor(
+    private platform: Platform,
+    private splashScreen: SplashScreen,
+    private statusBar: StatusBar
+  ) {
+    this.initializeApp();
+  }
+
+  initializeApp() {
+    this.platform.ready().then(() => {
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
+    });
+  }
+}
+///////////////////////////////////////////////////////////////
+modulos de la app
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { RouteReuseStrategy } from '@angular/router';
+
+import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
+
+import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+
+@NgModule({
+  declarations: [AppComponent],
+  entryComponents: [],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  providers: [
+    StatusBar,
+    SplashScreen,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule {}
+////////////////////////////////////////////////////////////////
+una app hecha en ionic contiene mucho mas archivos estos son los principales
+no podemos tener el proceso por el hecho de que lo ejecutamos localmente
+y no puede subirse a un repositorio para tenerlo en un servidor a menos que lo
+hagamos directamente meter a un servidor gratuito especificando ip en uno de los documentos
+del proyecto.
+
+una manera de presentar, solo la interfaz por la falta de conexion a base de datos, es
+por medio de un video
